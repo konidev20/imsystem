@@ -1,0 +1,18 @@
+<?php
+//Connection Parameters
+$URL = "localhost";
+//Change this in the lab to the required settings
+$userName = "root";
+$password = "firewall123";
+$dbName  = "imsdb";
+
+//Establishing a connection with the database
+$CONN = mysqli_connect($URL,$userName,$password,$dbName);
+
+//Checking if the connection has been established or not.
+if(!$CONN){
+  die("Failed to establish a database connection :  ".mysqli_connect_error());
+}else{
+  echo "Connection successful";
+}
+?>
