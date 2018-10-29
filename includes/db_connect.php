@@ -4,6 +4,7 @@ $URL = "localhost";
 //Change this in the lab to the required settings
 $userName = "root";
 $password = "firewall123";
+//Database name 
 $dbName  = "imsdb";
 
 //Establishing a connection with the database
