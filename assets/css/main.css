@@ -6,6 +6,22 @@ body {
 }
 
 .container{
-  width:80%;
+  width: 80%;
   height:100%;
+}
+
+.row{
+  margin-bottom: 1%;
+}
+
+.jumbotron{
+  width: 100%;
+}
+
+.card{
+  margin:2%;
+}
+
+.card-header{
+  background-color: #ffffff;
 }
