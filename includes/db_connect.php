@@ -12,7 +12,7 @@ $CONN = mysqli_connect($URL,$userName,$password,$dbName);
 
 //Checking if the connection has been established or not.
 if(!$CONN){
-  die("<h1>Failed to establish a database connection :  </h1>".mysqli_connect_error());
+  die("<h1>Failed to establish a database connection : </h1>" . mysqli_connect_error());
 }else{
   //echo "<h1>Connection successful</h1>";
 }

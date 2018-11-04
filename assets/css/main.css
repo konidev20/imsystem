@@ -2,7 +2,6 @@ body {
     height: 100%;
     width: 100%;
     position: absolute;
-    background-size: cover;
 }
 
 .container{
@@ -20,8 +19,4 @@ body {
 
 .card{
   margin:2%;
-}
-
-.card-header{
-  background-color: #ffffff;
 }

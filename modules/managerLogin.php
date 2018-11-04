@@ -33,7 +33,7 @@ $loginAction = mysqli_query($CONN, "SELECT MANAGER, PASSWORD FROM shipping_cente
     if( $row['MANAGER']==$managerName && $row['PASSWORD']==$managerPassword ){
         //echo " <h2> Login Successful....... </h2>";
         $_SESSION["managerName"] = $managerName;
-        $_SESSION["loginType"] = 'Manager';
+        $_SESSION["loginType"] = 1;
         header('LOCATION: managerDashboard.php');
         //echo " <a href='/dashboard.php' class='btn btn-danger' style='width:50%;margin:auto'><h4>Continue</h4></a> ";
     }

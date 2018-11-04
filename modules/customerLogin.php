@@ -34,7 +34,7 @@ $loginAction = mysqli_query($CONN, "SELECT CUSTOMER_ID, PHONE FROM customer WHER
     if( $row['CUSTOMER_ID']==$customerID && $row['PHONE']==$customerPassword ){
         //echo " <h2> Login Successful....... </h2>";
         $_SESSION["customerID"] = $customerID;
-        $_SESSION["loginType"] = 'Customer';
+        $_SESSION["loginType"] = 2;
         header('LOCATION: customerDashboard.php');
         //echo " <a href='/dashboard.php' class='btn btn-danger' style='width:50%;margin:auto'><h4>Continue</h4></a> ";
     }
