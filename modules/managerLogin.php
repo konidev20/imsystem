@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../includes/db_connect.php'; //Establish DB Connection
 if(isset($_POST["managerName"]) && isset($_POST["managerPassword"])){
   $managerName = $_POST["managerName"];
@@ -39,7 +40,7 @@ $loginAction = mysqli_query($CONN, "SELECT MANAGER, PASSWORD FROM shipping_cente
     }
     else{
         echo " <h2>Incorrect Password</h2>";
-        echo " <a href='./index.html' class='btn btn-danger'>Retry</a> ";
+        echo " <a href='../index.html' class='btn btn-danger'>Retry</a> ";
     }
   }else{
     echo "<h2> Manager Not Found </h2>";

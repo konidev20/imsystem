@@ -4,8 +4,14 @@ body {
     position: absolute;
 }
 
+.header{
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
 .container{
-  width: 80%;
+  width: 90%;
   height:100%;
 }
 
@@ -19,4 +25,10 @@ body {
 
 .card{
   margin:2%;
+}
+
+.footer{
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }

@@ -15,12 +15,13 @@ require_once 'db_connect.php';
 </head>
 <body>
   <div class="container">
+    <header class="header navbar navbar-dark bg-primary">
+      <span class="navbar-brand">
+        Inventory Management System
+      </span>
+    </header>
     <div class="row">
       <div class="col-md-12">
-        <div class="navbar">
-          <span class="navbar-brand">
-            Inventory Management System
-          </span>
-        </div>
+
       </div>
     </div>
