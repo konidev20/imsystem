@@ -1,34 +1,30 @@
+html{
+  height:100%;
+}
 body {
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: relative;
 }
 
 .header{
-  left: 0;
-  top: 0;
-  width: 100%;
+  margin-bottom:1%;
 }
 
 .container{
   width: 90%;
-  height:100%;
+  margin-bottom: 1rem;
 }
 
-.row{
-  margin-bottom: 1%;
-}
 
 .jumbotron{
   width: 100%;
 }
 
 .card{
-  margin:2%;
+  margin-bottom:1rem;
 }
 
-.footer{
-    left: 0;
-    bottom: 0;
-    width: 100%;
+.row{
+  margin-bottom: 1rem;
 }
