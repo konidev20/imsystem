@@ -9,19 +9,6 @@ if(isset($_SESSION["loginType"])){
 }else{
   die("You are not authorized to view this page.");
 }
-
-if(isset($_GET["orderID"])){
-  //echo "Received";
-  $orderID = $_GET["orderID"];
-  $call = "CALL dispatchOrder(".$orderID.")";
-  $action = mysqli_query($CONN, $call);
-  header('LOCATION: orderList.php');
-}elseif (isset($_GET["orderDelete"])) {
-  $orderDelete = $_GET["orderDelete"];
-  $del = "DELETE FROM orders WHERE ORDER_ID = ".$orderDelete;
-  $action = mysqli_query($CONN,$del);
-  header('LOCATION: orderList.php');
-}
 ?>
 <!--Content-->
 <div class="row">
@@ -32,6 +19,13 @@ if(isset($_GET["orderID"])){
       </div>
     </div>
   </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header text-center">
+        <a class="btn btn-info" href="oldOrders.php">Old Orders</a>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="row">
   <div class="col-md-12">
@@ -39,7 +33,7 @@ if(isset($_GET["orderID"])){
       <h4 class="text-center">Pending Orders</h4>
       <hr class="my-4">
       <?php
-      $query = "SELECT O.ORDER_ID AS OI, O.CUSTOMER_ID AS CID, C.NAME AS CNA, O.INVOICE_DATE AS IND, C.ADDRESS AS CAD, O.TAX_RATE AS TR, O.TOTAL_PRICE AS TP FROM orders O, customer C WHERE O.CUSTOMER_ID = C.CUSTOMER_ID AND O.INVOICE_STATUS = 1;";
+      $query = "SELECT O.ORDER_ID AS OI, O.CUSTOMER_ID AS CID, C.NAME AS CNA, O.INVOICE_DATE AS IND, C.ADDRESS AS CAD, O.TAX_RATE AS TR, O.TOTAL_PRICE AS TP FROM orders O, customer C WHERE O.CUSTOMER_ID = C.CUSTOMER_ID AND O.INVOICE_STATUS = 0;";
       $action = mysqli_query($CONN, $query);
       $numOrders = mysqli_num_rows($action);
       if($numOrders < 1){
@@ -118,9 +112,8 @@ if(isset($_GET["orderID"])){
                     </table>
                   </div>
                   <div class="text-right">
-                    <a class="btn btn-danger" href="orderList.php?orderDelete=<?php echo "".$row["OI"];?>">Delete</a>
-
-                    <a class="btn btn-success" href="orderList.php?orderID=<?php echo "".$row["OI"];?>">Dispatch</a>
+                    <a class="btn btn-danger" href="deleteOrder.php?orderDelete=<?php echo"".$row['OI'];?>">Delete</a>
+                    <a class="btn btn-success" href="dispatchOrder.php?orderID=<?php echo"".$row['OI'];?>">Dispatch</a>
                   </div>
                 </div>
               </div>
@@ -133,14 +126,15 @@ if(isset($_GET["orderID"])){
     </div>
   </div>
 </div>
+
 <hr class="my-4">
 <div class="row">
   <div class="col-md-12">
     <div class="container" style="width:100%;">
-      <h4 class="text-center">Processed Orders</h4>
+      <h4 class="text-center">Dispatched Orders</h4>
       <hr class="my-4">
       <?php
-      $query = "SELECT O.ORDER_ID AS OI, O.CUSTOMER_ID AS CID, C.NAME AS CNA, O.INVOICE_DATE AS IND, C.ADDRESS AS CAD, O.TAX_RATE AS TR, O.TOTAL_PRICE AS TP FROM orders O, customer C WHERE O.CUSTOMER_ID = C.CUSTOMER_ID AND O.INVOICE_STATUS = 0;";
+      $query = "SELECT O.ORDER_ID AS OI, O.CUSTOMER_ID AS CID, C.NAME AS CNA, O.INVOICE_DATE AS IND, C.ADDRESS AS CAD, O.TAX_RATE AS TR, O.TOTAL_PRICE AS TP FROM orders O, customer C WHERE O.CUSTOMER_ID = C.CUSTOMER_ID AND O.INVOICE_STATUS = 1;";
       $action = mysqli_query($CONN, $query);
       $numOrders = mysqli_num_rows($action);
       if($numOrders < 1){

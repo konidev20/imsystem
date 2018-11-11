@@ -27,19 +27,49 @@ if(isset($_SESSION["loginType"])){
               Add Customer
             </button>
         </div>
-
         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
           <div class="card-body">
-            <form  action="customerList.php" method="post">
+            <form  action="addCustomer.php" method="post">
               <div class="row">
                 <div class="col">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="custID" placeholder="CustomerID">
+                    <input class="form-control" type="text" name="custID" placeholder="CustomerID (10)">
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="custName" placeholder="Customer Name">
+                    <input class="form-control" type="text" name="custName" placeholder="Customer Name (30)">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <input class="form-control" type="text" name="custCity" placeholder="City (20)">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <input class="form-control" type="text" name="custAddress" placeholder="Address (40)">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <input class="form-control" type="text" name="custZipcode" placeholder="Zipcode (6)">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <input class="form-control" type="text" name="custPhone" placeholder="Phone (10)">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Add Customer</button>
                   </div>
                 </div>
               </div>
@@ -98,7 +128,7 @@ if(isset($_SESSION["loginType"])){
               </div>
               <div class="row">
                 <div class="col-md-12 text-right">
-                  <a class="btn btn-warning" href="#">Delete</a>
+                  <a class="btn btn-warning" href="deleteCustomer.php?customerID=<?php echo "".$customer['CUSTOMER_ID']; ?>">Delete</a>
                 </div>
               </div>
             </div>

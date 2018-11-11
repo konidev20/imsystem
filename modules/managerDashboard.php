@@ -36,9 +36,9 @@ if(isset($_SESSION["loginType"])){
     <div class="card" >
       <div class="card-header">Orders</div>
       <div class="card-body">
-        <h5 class="card-title">No. of Orders</h5>
+        <h5 class="card-title">Pending Orders</h5>
         <h4 class="card-text"><?php
-        $query = mysqli_query($CONN,"SELECT COUNT(*) AS CNT FROM orders WHERE INVOICE_STATUS = 1;");
+        $query = mysqli_query($CONN,"SELECT COUNT(*) AS CNT FROM orders WHERE INVOICE_STATUS = 0;");
         $row = mysqli_fetch_assoc($query);
         echo "".$row["CNT"];
         ?></h4>

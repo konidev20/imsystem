@@ -1,11 +1,12 @@
 <?php
+session_start();
 require_once '../includes/db_connect.php'; //Establish DB Connection
 if(isset($_POST["customerID"]) && isset($_POST["customerPassword"])){
   $customerID = $_POST["customerID"];
   $customerPassword = $_POST["customerPassword"];
 }
-echo "".$customerID."";
-echo "".$customerPassword."";
+//echo "".$customerID."";
+//echo "".$customerPassword."";
 $loginAction = mysqli_query($CONN, "SELECT CUSTOMER_ID, PHONE FROM customer WHERE CUSTOMER_ID ='".$customerID."'");
 ?>
 <!DOCTYPE html>
@@ -33,10 +34,12 @@ $loginAction = mysqli_query($CONN, "SELECT CUSTOMER_ID, PHONE FROM customer WHER
     $row = mysqli_fetch_assoc($loginAction);
     if( $row['CUSTOMER_ID']==$customerID && $row['PHONE']==$customerPassword ){
         //echo " <h2> Login Successful....... </h2>";
-        $_SESSION["customerID"] = $customerID;
-        $_SESSION["loginType"] = 2;
+        $_SESSION['customerID'] = $customerID;
+        $_SESSION['loginType'] = 2;
+        //echo "".$_SESSION["customerID"] ;
+        //echo "".$_SESSION["loginType"] ;
         header('LOCATION: customerDashboard.php');
-        //echo " <a href='/dashboard.php' class='btn btn-danger' style='width:50%;margin:auto'><h4>Continue</h4></a> ";
+        //echo "<a href='./customerDashboard.php' class='btn btn-danger' style='width:50%;margin:auto'><h4>Continue</h4></a> ";
     }
     else{
         echo " <h2>Incorrect Password</h2>";

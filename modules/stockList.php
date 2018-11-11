@@ -31,39 +31,6 @@ if(isset($_POST["product"]) && isset($_POST["nUnits"])){
       </div>
     </div>
   </div>
-  <div class="col-md-8">
-    <div class="accordion" id="accordionExample">
-      <div class="card">
-        <div class="card-header text-center" id="headingOne">
-            <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="width:50%;">
-              Restock
-            </button>
-        </div>
-
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-          <div class="card-body">
-            <form  action="stockList.php" method="post">
-              <div class="form-group">
-                <label for="options">Product</label>
-                <select class="form-control" name="product">
-                  <?php
-                  foreach ($products as $product) {
-                    echo "<option>".$product."</option>";
-                  }
-                  ?>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="noOfUnits">Add Units</label>
-                <input type="text" class="form-control" name="nUnits" placeholder="Enter No of Units">
-              </div>
-              <button type="submit" class="btn btn-success">ADD</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 <div class="row">
   <div class="col-md-12">
@@ -130,6 +97,47 @@ if(isset($_POST["product"]) && isset($_POST["nUnits"])){
               ?>
             </tbody>
           </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card" style="padding:1rem;">
+      <div class="card-body">
+        <div class="card-text">
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header text-center" id="headingOne">
+                  <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="width:50%;">
+                    Restock
+                  </button>
+              </div>
+
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  <form  action="stockList.php" method="post">
+                    <div class="form-group">
+                      <label for="options">Product</label>
+                      <select class="form-control" name="product">
+                        <?php
+                        foreach ($products as $product) {
+                          echo "<option>".$product."</option>";
+                        }
+                        ?>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="noOfUnits">Add Units</label>
+                      <input type="text" class="form-control" name="nUnits" placeholder="Enter No of Units">
+                    </div>
+                    <button type="submit" class="btn btn-success">ADD</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
