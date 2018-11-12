@@ -9,18 +9,6 @@ if(isset($_SESSION["loginType"])){
 }else{
   die("You are not authorized to view this page.");
 }
-
-if(isset($_POST["product"]) && isset($_POST["nUnits"])){
-  $product = $_POST["product"];
-  $nUnits = $_POST["nUnits"];
-  $query = "SELECT NO_OF_UNITS AS N FROM stock, product WHERE product.NAME = '".$product."' AND product.PRODUCT_ID = stock.PRODUCT_ID";
-  $action = mysqli_query($CONN,$query);
-  $row = mysqli_fetch_assoc($action);
-  $existStock = $row['N'];
-  $new = $existStock + $nUnits;
-  $query = "UPDATE stock SET NO_OF_UNITS=".$new." WHERE PRODUCT_ID IN (SELECT PRODUCT_ID FROM product WHERE product.NAME = '".$product."')";
-  $action = mysqli_query($CONN,$query);
-}
 ?>
 <!--Content-->
 <div class="row">
@@ -117,7 +105,7 @@ if(isset($_POST["product"]) && isset($_POST["nUnits"])){
 
               <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
-                  <form  action="stockList.php" method="post">
+                  <form  action="restock.php" method="post">
                     <div class="form-group">
                       <label for="options">Product</label>
                       <select class="form-control" name="product">

@@ -6,18 +6,23 @@ if(isset($_SESSION['loginType'])){
     $customerID = $_SESSION["customerID"];
   }
 }else{
-  die("You are not authorized to view this page.");
+  die("<div class='alert alert-danger'>You are not authorized to view this page. <a href='../index.html'>Click here to go back. </a></div>");
 }
 ?>
 
 <!--Content-->
+<div class="row">
+  <div class="col-md-6">
+      <a class="btn btn-secondary" href="logout.php">Logout</a>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-12">
     <div class="accordion" id="accordionExample">
       <div class="card">
         <div class="card-header text-center" id="headingOne">
             <button class="btn btn-success text-center" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="width:50%;">
-              Add Customer
+              Create an order.
             </button>
         </div>
         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">

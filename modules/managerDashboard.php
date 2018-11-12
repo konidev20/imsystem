@@ -7,7 +7,7 @@ if(isset($_SESSION["loginType"])){
     $managerName = $_SESSION["managerName"];
   }
 }else{
-  die("You are not authorized to view this page.");
+  die("<div class='alert alert-danger'>You are not authorized to view this page. <a href='../index.html'>Click here to go back. </a></div>");
 }
 ?>
 
@@ -16,16 +16,28 @@ if(isset($_SESSION["loginType"])){
   <div class="col-md-12">
     <div class="card">
       <div class="card-body">
-        <?php
-        $query = mysqli_query($CONN,"SELECT * FROM shipping_center WHERE MANAGER = '".$managerName."'");
-        $row = mysqli_fetch_assoc($query);
-        ?>
-        <h5 class="card-title"><?php echo "".$row["NAME"]; ?></h5>
-        <h6 class="card-subtitle mb-2 text-muted"><?php echo "".$row["ADDRESS"]." ".$row["PHONE"];?></h6>
-        <p class="card-text">
-          Shipping Center ID : <?php echo "".$row["SHIPPING_CENTER_ID"] ;?>
-          Manager: <?php echo "".$row["MANAGER"]; ?>
-        </p>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <?php
+              $query = mysqli_query($CONN,"SELECT * FROM shipping_center WHERE MANAGER = '".$managerName."'");
+              $row = mysqli_fetch_assoc($query);
+              ?>
+              <h5 class="card-title"><?php echo "".$row["NAME"]; ?></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><?php echo "".$row["ADDRESS"]." ".$row["PHONE"];?></h6>
+              <p class="card-text">
+                Shipping Center ID : <?php echo "".$row["SHIPPING_CENTER_ID"] ;?>
+                Manager: <?php echo "".$row["MANAGER"]; ?>
+                <?php
+                  $_SESSION['shippingCenterID'] = $row['SHIPPING_CENTER_ID'];
+                 ?>
+              </p>
+            </div>
+            <div class="col-md-6 text-right">
+              <a class="btn btn-secondary" href="logout.php">Logout</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

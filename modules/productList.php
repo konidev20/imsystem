@@ -7,7 +7,7 @@ if(isset($_SESSION["loginType"])){
     $managerName = $_SESSION["managerName"];
   }
 }else{
-  die("You are not authorized to view this page.");
+  die("<div class='alert alert-danger'>You are not authorized to view this page. <a href='../index.html'>Click here to go back. </a></div>");
 }
 ?>
 <!--Footer-->

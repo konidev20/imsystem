@@ -24,7 +24,10 @@
                     <a class = 'btn btn-danger' href='customerList.php'>Click here to return</a>
                 </div>";
     }else{
-      header('LOCATION:customerList.php');
+      echo "<div class='alert alert-success'>
+                    Successfully added a customer.
+                    <a class = 'btn btn-danger' href='customerList.php'>Click here to return</a>
+                </div>";
     }
   }else{
     die("<div class='alert alert-danger'>

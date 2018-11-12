@@ -15,7 +15,7 @@ if(isset($_SESSION["loginType"])){
   <div class="col-md-4">
     <div class="card">
       <div class="card-header text-center">
-        <a class="btn btn-secondary" href="managerDashboard.php">Back to Manager Dashboard</a>
+        <a class="btn btn-secondary" href="orderList.php">Back to Orders</a>
       </div>
     </div>
   </div>
