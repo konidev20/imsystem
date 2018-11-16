@@ -28,7 +28,7 @@ if(isset($_SESSION["loginType"])){
       <h4 class="text-center">Processed Order</h4>
       <hr class="my-4">
       <?php
-      $query = "SELECT O.ORDER_ID AS OI, O.CUSTOMER_ID AS CID, C.NAME AS CNA, O.INVOICE_DATE AS IND, C.ADDRESS AS CAD, O.TAX_RATE AS TR, O.TOTAL_PRICE AS TP FROM orders O, customer C WHERE O.CUSTOMER_ID = C.CUSTOMER_ID AND O.INVOICE_STATUS = 2;";
+      $query = "SELECT O.ORDER_ID AS OI, O.CUSTOMER_ID AS CID, C.NAME AS CNA, O.INVOICE_DATE AS IND, C.ADDRESS AS CAD,  O.TOTAL_PRICE AS TP FROM orders O, customer C WHERE O.CUSTOMER_ID = C.CUSTOMER_ID AND O.INVOICE_STATUS = 2;";
       $action = mysqli_query($CONN, $query);
       $numOrders = mysqli_num_rows($action);
       if($numOrders < 1){
@@ -57,7 +57,6 @@ if(isset($_SESSION["loginType"])){
                   <p><h6> Customer Name : </h6> <?php echo "".$row["CNA"] ?></p>
                   <p><h6> Date : </h6> <?php echo "".$row["IND"] ?></p>
                   <p><h6> Customer Address: </h6> <?php echo "".$row["CAD"] ?></p>
-                  <p><h6> Tax Rate : </h6> <?php echo "".$row["TR"] ?>%</p>
                   <p><h6> Total : </h6> <?php echo "".$row["TP"] ?></p>
                 </div>
               </div>

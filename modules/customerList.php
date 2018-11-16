@@ -1,14 +1,7 @@
 <!--Header-->
 <?php
 require_once '../includes/header.php';
-if(isset($_SESSION["loginType"])){
-  if(isset($_SESSION["managerName"])){
-    //echo "Manager Logged in.";
-    $managerName = $_SESSION["managerName"];
-  }
-}else{
-die("<div class='alert alert-danger'>You are not authorized to view this page. <a href='../index.html'>Click here to go back. </a></div>");
-}
+require_once '../includes/managerAuth.php';
 ?>
 <!--Content-->
 <div class="row">
@@ -128,7 +121,10 @@ die("<div class='alert alert-danger'>You are not authorized to view this page. <
               </div>
               <div class="row">
                 <div class="col-md-12 text-right">
-                  <a class="btn btn-warning" href="deleteCustomer.php?customerID=<?php echo "".$customer['CUSTOMER_ID']; ?>">Delete</a>
+                  <div class="btn-group">
+                    <a class="btn btn-danger" href="deleteCustomer.php?customerID=<?php echo "".$customer['CUSTOMER_ID']; ?>">Delete</a>
+                    <a class="btn btn-secondary" href="updateCustomer.php?=<?php echo $customer['CUSTOMER_ID'] ?>">Update</a>
+                  </div>
                 </div>
               </div>
             </div>

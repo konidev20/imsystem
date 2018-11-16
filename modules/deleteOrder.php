@@ -1,5 +1,6 @@
 <?php
   require_once '../includes/header.php';
+  require_once '../includes/managerAuth.php';
   if (isset($_GET["orderDelete"])) {
     $orderDelete = $_GET["orderDelete"];
     $del = "DELETE FROM orders WHERE ORDER_ID = ".$orderDelete;

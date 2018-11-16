@@ -1,12 +1,13 @@
 <?php
-session_start();
-require_once '../includes/db_connect.php'; //Establish DB Connection
-if(isset($_POST["managerName"]) && isset($_POST["managerPassword"])){
-  $managerName = $_POST["managerName"];
+require_once '../includes/header.php';
+if(isset($_POST["managerID"]) && isset($_POST["managerPassword"])){
+  $managerID = $_POST["managerID"];
   $managerPassword = $_POST["managerPassword"];
+}else{
+  die("<div class='alert alert-warning'>ERROR OCCURED <a href='../index.html'>Click here to try again.</a></div>");
 }
-
-$loginAction = mysqli_query($CONN, "SELECT MANAGER, PASSWORD FROM shipping_center WHERE MANAGER ='".$managerName."'");
+$query = "SELECT SC.SHIPPING_CENTER_ID,SC.NAME,SC.ADDRESS,SC.PHONE,SC.MANAGER_ID,M.MANAGER_NAME,SC.PASSWORD FROM shipping_center SC, manager M WHERE SC.MANAGER_ID = M.MANAGER_ID";
+$loginAction = mysqli_query($CONN,$query);
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -31,10 +32,12 @@ $loginAction = mysqli_query($CONN, "SELECT MANAGER, PASSWORD FROM shipping_cente
   $nRows = mysqli_num_rows($loginAction);
   if($nRows>0){
     $row = mysqli_fetch_assoc($loginAction);
-    if( $row['MANAGER']==$managerName && $row['PASSWORD']==$managerPassword ){
+    if( $row['MANAGER_ID']==$managerID && $row['PASSWORD']==$managerPassword ){
         //echo " <h2> Login Successful....... </h2>";
-        $_SESSION["managerName"] = $managerName;
+        $_SESSION["managerName"] = $row['MANAGER_NAME'];
+        $_SESSION["managerID"] = $managerID;
         $_SESSION["loginType"] = 1;
+        $_SESSION['shippingCenterID'] = $row['SHIPPING_CENTER_ID'];
         header('LOCATION: managerDashboard.php');
         //echo " <a href='/dashboard.php' class='btn btn-danger' style='width:50%;margin:auto'><h4>Continue</h4></a> ";
     }

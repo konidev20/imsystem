@@ -1,14 +1,7 @@
 <!--Header-->
 <?php
 require_once '../includes/header.php';
-if(isset($_SESSION["loginType"])){
-  if(isset($_SESSION["managerName"])){
-    //echo "Manager Logged in.";
-    $managerName = $_SESSION["managerName"];
-  }
-}else{
-  die("<div class='alert alert-danger'>You are not authorized to view this page. <a href='../index.html'>Click here to go back. </a></div>");
-}
+require_once '../includes/managerAuth.php';
 ?>
 
 <!--Content-->
@@ -20,17 +13,14 @@ if(isset($_SESSION["loginType"])){
           <div class="row">
             <div class="col-md-6">
               <?php
-              $query = mysqli_query($CONN,"SELECT * FROM shipping_center WHERE MANAGER = '".$managerName."'");
+              $query = mysqli_query($CONN,"SELECT * FROM shipping_center WHERE MANAGER_ID = ".$managerID);
               $row = mysqli_fetch_assoc($query);
               ?>
-              <h5 class="card-title"><?php echo "".$row["NAME"]; ?></h5>
+              <h5 class="card-title"><?php echo "".$row["NAME"] ?></h5>
               <h6 class="card-subtitle mb-2 text-muted"><?php echo "".$row["ADDRESS"]." ".$row["PHONE"];?></h6>
               <p class="card-text">
-                Shipping Center ID : <?php echo "".$row["SHIPPING_CENTER_ID"] ;?>
-                Manager: <?php echo "".$row["MANAGER"]; ?>
-                <?php
-                  $_SESSION['shippingCenterID'] = $row['SHIPPING_CENTER_ID'];
-                 ?>
+                Shipping Center ID : <?php echo "".$row["SHIPPING_CENTER_ID"] ;?> <br>
+                Manager: <?php echo $managerName ?>
               </p>
             </div>
             <div class="col-md-6 text-right">

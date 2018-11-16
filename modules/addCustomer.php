@@ -1,5 +1,6 @@
 <?php
   require_once '../includes/header.php';
+  require_once '../includes/managerAuth.php';
 
   if(isset($_POST['custID']) && ($_POST['custID'] != '') &&
   isset($_POST['custName']) && ($_POST['custName'] != '') &&

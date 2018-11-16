@@ -1,48 +1,38 @@
 <!--Header-->
 <?php
 require_once '../includes/header.php';
-if(isset($_SESSION['loginType'])){
-  if(isset($_SESSION['customerID'])){
-    $customerID = $_SESSION["customerID"];
-  }
-}else{
-  die("<div class='alert alert-danger'>You are not authorized to view this page. <a href='../index.html'>Click here to go back. </a></div>");
-}
+require_once '../includes/customerAuth.php';
 ?>
 
 <!--Content-->
 <div class="row">
-  <div class="col-md-6">
-      <a class="btn btn-secondary" href="logout.php">Logout</a>
-  </div>
-</div>
-<div class="row">
   <div class="col-md-12">
-    <div class="accordion" id="accordionExample">
-      <div class="card">
-        <div class="card-header text-center" id="headingOne">
-            <button class="btn btn-success text-center" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="width:50%;">
-              Create an order.
-            </button>
-        </div>
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-          <div class="card-body">
-            <form  action="createOrder.php" method="post">
-              
-            </form>
+    <div class="card">
+      <div class="card-header">
+        <h6>Customer ID : <?php echo $customerID ?></h6>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><?php echo $customerName ?></h5>
+        <div class="card-text">
+          <p>Address : <?php echo $customerAddress.",<br>".$customerCity.",<br>".$customerZipCode ?></p>
+          <p>Phone : <?php echo $customerPhone ?></p>
+          <div class="text-right">
+            <a class="btn btn-secondary" href="logout.php">Logout</a>
+            <a class="btn btn-primary" href="createOrder.php">Create Order</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <div class="row">
   <div class="col-md-12">
     <div class="container" style="width:100%;">
       <h4 class="text-center">Pending Orders</h4>
       <hr class="my-4">
       <?php
-      $query = "SELECT O.ORDER_ID AS OI, O.CUSTOMER_ID AS CID, C.NAME AS CNA, O.INVOICE_DATE AS IND, C.ADDRESS AS CAD, O.TAX_RATE AS TR, O.TOTAL_PRICE AS TP FROM orders O, customer C WHERE O.CUSTOMER_ID ='".$customerID."' AND C.NAME IN (SELECT NAME FROM customer WHERE CUSTOMER_ID = '".$customerID."' ) AND O.INVOICE_STATUS = 0;";
+      $query = "SELECT O.ORDER_ID AS OI, O.CUSTOMER_ID AS CID, C.NAME AS CNA, O.INVOICE_DATE AS IND, C.ADDRESS AS CAD, O.TOTAL_PRICE AS TP FROM orders O, customer C WHERE O.CUSTOMER_ID ='".$customerID."' AND C.NAME IN (SELECT NAME FROM customer WHERE CUSTOMER_ID = '".$customerID."' ) AND O.INVOICE_STATUS = 0;";
       $action = mysqli_query($CONN, $query);
       $numOrders = mysqli_num_rows($action);
       if($numOrders < 1){
@@ -71,7 +61,6 @@ if(isset($_SESSION['loginType'])){
                   <p><h6> Customer Name : </h6> <?php echo "".$row["CNA"] ?></p>
                   <p><h6> Date : </h6> <?php echo "".$row["IND"] ?></p>
                   <p><h6> Customer Address: </h6> <?php echo "".$row["CAD"] ?></p>
-                  <p><h6> Tax Rate : </h6> <?php echo "".$row["TR"] ?>%</p>
                   <p><h6> Total : </h6> <?php echo "".$row["TP"] ?></p>
                 </div>
               </div>
@@ -90,6 +79,7 @@ if(isset($_SESSION['loginType'])){
                         <th>Quantity</th>
                         <th>Unit Price</th>
                         <th>Total</th>
+                        <th>Action</th>
                       </thead>
                       <tbody>
                         <?php
@@ -113,6 +103,9 @@ if(isset($_SESSION['loginType'])){
                             <td>
                               <?php echo $item["TPI"]; ?>
                             </td>
+                            <td>
+                              <a class="btn btn-danger" href="deleteOrderItem.php?orderID=<?php echo "".$row["OI"] ?>&itemID=<?php echo $item["ID"] ?>">Delete Item</a>
+                            </td>
                           </tr>
                           <?php
                         }
@@ -121,7 +114,7 @@ if(isset($_SESSION['loginType'])){
                     </table>
                   </div>
                   <div class="text-right">
-
+                    <a class="btn btn-danger" href="deleteOrder.php?orderDelete=<?php echo"".$row['OI'];?>">Cancel</a>
                   </div>
                 </div>
               </div>
@@ -142,7 +135,7 @@ if(isset($_SESSION['loginType'])){
       <h4 class="text-center">Orders on the way</h4>
       <hr class="my-4">
       <?php
-      $query = "SELECT O.ORDER_ID AS OI, O.CUSTOMER_ID AS CID, C.NAME AS CNA, O.INVOICE_DATE AS IND, C.ADDRESS AS CAD, O.TAX_RATE AS TR, O.TOTAL_PRICE AS TP FROM orders O, customer C WHERE O.CUSTOMER_ID ='".$customerID."' AND C.NAME IN (SELECT NAME FROM customer WHERE CUSTOMER_ID = '".$customerID."' ) AND O.INVOICE_STATUS = 1;";
+      $query = "SELECT O.ORDER_ID AS OI, O.CUSTOMER_ID AS CID, C.NAME AS CNA, O.INVOICE_DATE AS IND, C.ADDRESS AS CAD, O.TOTAL_PRICE AS TP FROM orders O, customer C WHERE O.CUSTOMER_ID ='".$customerID."' AND C.NAME IN (SELECT NAME FROM customer WHERE CUSTOMER_ID = '".$customerID."' ) AND O.INVOICE_STATUS = 1;";
       $action = mysqli_query($CONN, $query);
       $numOrders = mysqli_num_rows($action);
       if($numOrders < 1){
@@ -171,7 +164,6 @@ if(isset($_SESSION['loginType'])){
                   <p><h6> Customer Name : </h6> <?php echo "".$row["CNA"] ?></p>
                   <p><h6> Date : </h6> <?php echo "".$row["IND"] ?></p>
                   <p><h6> Customer Address: </h6> <?php echo "".$row["CAD"] ?></p>
-                  <p><h6> Tax Rate : </h6> <?php echo "".$row["TR"] ?>%</p>
                   <p><h6> Total : </h6> <?php echo "".$row["TP"] ?></p>
                 </div>
               </div>
@@ -241,7 +233,7 @@ if(isset($_SESSION['loginType'])){
       <h4 class="text-center">Order History</h4>
       <hr class="my-4">
       <?php
-      $query = "SELECT O.ORDER_ID AS OI, O.CUSTOMER_ID AS CID, C.NAME AS CNA, O.INVOICE_DATE AS IND, C.ADDRESS AS CAD, O.TAX_RATE AS TR, O.TOTAL_PRICE AS TP FROM orders O, customer C WHERE O.CUSTOMER_ID ='".$customerID."' AND C.NAME IN (SELECT NAME FROM customer WHERE CUSTOMER_ID = '".$customerID."' ) AND O.INVOICE_STATUS = 2;";
+      $query = "SELECT O.ORDER_ID AS OI, O.CUSTOMER_ID AS CID, C.NAME AS CNA, O.INVOICE_DATE AS IND, C.ADDRESS AS CAD, O.TOTAL_PRICE AS TP FROM orders O, customer C WHERE O.CUSTOMER_ID ='".$customerID."' AND C.NAME IN (SELECT NAME FROM customer WHERE CUSTOMER_ID = '".$customerID."' ) AND O.INVOICE_STATUS = 2;";
       $action = mysqli_query($CONN, $query);
       $numOrders = mysqli_num_rows($action);
       if($numOrders < 1){
@@ -270,7 +262,6 @@ if(isset($_SESSION['loginType'])){
                   <p><h6> Customer Name : </h6> <?php echo "".$row["CNA"] ?></p>
                   <p><h6> Date : </h6> <?php echo "".$row["IND"] ?></p>
                   <p><h6> Customer Address: </h6> <?php echo "".$row["CAD"] ?></p>
-                  <p><h6> Tax Rate : </h6> <?php echo "".$row["TR"] ?>%</p>
                   <p><h6> Total : </h6> <?php echo "".$row["TP"] ?></p>
                 </div>
               </div>

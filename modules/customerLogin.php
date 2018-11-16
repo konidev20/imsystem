@@ -7,7 +7,7 @@ if(isset($_POST["customerID"]) && isset($_POST["customerPassword"])){
 }
 //echo "".$customerID."";
 //echo "".$customerPassword."";
-$loginAction = mysqli_query($CONN, "SELECT CUSTOMER_ID, PHONE FROM customer WHERE CUSTOMER_ID ='".$customerID."'");
+$loginAction = mysqli_query($CONN, "SELECT * FROM customer WHERE CUSTOMER_ID ='".$customerID."'");
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -36,6 +36,11 @@ $loginAction = mysqli_query($CONN, "SELECT CUSTOMER_ID, PHONE FROM customer WHER
         //echo " <h2> Login Successful....... </h2>";
         $_SESSION['customerID'] = $customerID;
         $_SESSION['loginType'] = 2;
+        $_SESSION['customerName'] = $row['NAME'];
+        $_SESSION['customerCity'] = $row['CITY'];
+        $_SESSION['customerAddress'] = $row['ADDRESS'];
+        $_SESSION['customerZipCode'] = $row['ZIPCODE'];
+        $_SESSION['customerPhone'] = $row['PHONE'];
         //echo "".$_SESSION["customerID"] ;
         //echo "".$_SESSION["loginType"] ;
         header('LOCATION: customerDashboard.php');

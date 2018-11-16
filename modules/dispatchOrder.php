@@ -1,5 +1,6 @@
 <?php
   require_once '../includes/header.php';
+  require_once '../includes/managerAuth.php';
 
   if(isset($_GET["orderID"])){
     //echo "Received";
@@ -29,7 +30,11 @@
          </div>
        <?php }else{?>
          <div class="alert alert-danger">
-           Out of Stock.
+           <?php
+            $q=mysqli_query($CONN,("SELECT NAME FROM product WHERE PRODUCT_ID = '".$status."'"));
+            $r=mysqli_fetch_assoc($q);
+           ?>
+           <?php echo $r['NAME']?> is out of stock. <a href="stockList.php">Restock here.</a>
          </div>
          <?php
        }

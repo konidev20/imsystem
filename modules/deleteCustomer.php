@@ -1,5 +1,6 @@
 <?php
   require_once '../includes/header.php';
+  require_once '../includes/managerAuth.php';
   if (isset($_GET["customerID"])) {
     $customerDelete = $_GET["customerID"];
     $del = "DELETE FROM customer WHERE CUSTOMER_ID = ".$customerDelete;

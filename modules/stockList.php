@@ -79,6 +79,13 @@ if(isset($_SESSION["loginType"])){
                   echo "</td>";
 
                   echo "</tr>";
+                  if($row['NO_OF_UNITS'] == 0){
+                    echo "<tr>";
+                    echo "<td   colspan='5'>";
+                    echo "<div class='alert alert-danger'>Stock Reached 0 for ".$row['NAME'].". Please Restock.</div>";
+                    echo "</td>";
+                    echo "</tr>";
+                  }
                 }
               }
               mysqli_close($CONN);
