@@ -4,7 +4,18 @@ function startsWith ($string, $startString)
   $len = strlen($startString);
   return (substr($string, 0, $len) === $startString);
 }
+
 require_once '../includes/header.php';
+
+function createOrder($con,$c,$sC){
+  $callQuery = "CALL createOrder('".$c."','".$sC."')";
+  $createOrder = mysqli_query($con,$callQuery);
+  if(!$createOrder){
+  die("<div class='alert alert-danger'>Error Occured while Creating an order".mysqli_error($con)."<a href='createOrder.php'>Try Again</a></div>");
+}else{
+  return TRUE;
+}
+}
 
 if(isset($_SESSION['loginType'])){
   $loginType = $_SESSION['loginType'];
@@ -58,11 +69,8 @@ if(isset($_POST['button']) && $_POST['button']=='create'){
   }
 
   //Create an order
-  $callQuery = "CALL createOrder('".$customer."','".$shippingCenter."')";
-  $createOrder = mysqli_query($CONN,$callQuery);
-  if(!$createOrder){
-  die("<div class='alert alert-danger'>Error Occured ".mysqli_error($CONN)."<a href='createOrder.php'>Try Again</a></div>");
-  }else{
+    $order = createOrder($CONN,$customer,$shippingCenter);
+    if($order){
     $queryLastOrder = "SELECT ORDER_ID FROM orders ORDER BY ORDER_ID DESC LIMIT 1";
     $action = mysqli_query($CONN,$queryLastOrder);
     $o = mysqli_fetch_assoc($action);
@@ -73,11 +81,12 @@ if(isset($_POST['button']) && $_POST['button']=='create'){
       $addOrderItemQuery  = "CALL addOrderItem(".$orderID.",'".$productID."',".$quantity.")";
       $action = mysqli_query($CONN,$addOrderItemQuery);
       if(!$action){
-          die("<div class='alert alert-danger'>Error Occured ".mysqli_error($CONN)."<a href='createOrder.php'>Try Again</a></div>");
+          die("<div class='alert alert-danger'>Error Occured while adding orderItems".mysqli_error($CONN)."<a href='createOrder.php'>Try Again</a></div>");
       }else{
-        die("<div class='alert alert-success'>Success<a href='$back'>Back</a></div>");
+        echo "<div class='alert alert-success'>Successfully added the Order Item with Product ID ".$productID."</div>";
       }
     }
+    die("<div class='alert alert-success'>Successfully Created an order. <a class='btn btn-success' href='$back'>Click here to go back</a></div>");
   }
 }
 ?>

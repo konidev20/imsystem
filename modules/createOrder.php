@@ -5,7 +5,7 @@ if(isset($_SESSION['loginType'])){
   $loginType = $_SESSION['loginType'];
   if($_SESSION['loginType'] == 1){
     require_once '../includes/managerAuth.php';
-    $customers = mysqli_query($CONN, "SELECT CUSTOMER_ID FROM customer");
+    $customers = mysqli_query($CONN, "SELECT CUSTOMER_ID,NAME FROM customer");
     if(!$customers){
       die("<div class='alert alert-danger'>unexpected error.</div>");
     }
@@ -51,12 +51,12 @@ if(!$action){
               if($loginType == 1){
                 while($customer = mysqli_fetch_assoc($customers)){
                ?>
-               <option><?php echo $customer['CUSTOMER_ID']; ?></option>
+               <option value="<?php echo $customer['CUSTOMER_ID']  ?>"><?php echo $customer['CUSTOMER_ID']." - ".$customer['NAME']; ?></option>
                <?php
              }
            }else{
              ?>
-             <option><?php echo $customerID ?></option>
+             <option value="<?php echo $customerID ?>"><?php echo $customerID." - ".$customerName ?></option>
            <?php
          }
          ?>

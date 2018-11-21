@@ -22,9 +22,6 @@ $loginAction = mysqli_query($CONN,$query);
 </head>
 <body>
   <div class="container">
-    <div class="jumbotron" style="margin:auto; margin-top:20%">
-  <h1 class="display-4">Oops an error occured.</h1>
-  <hr class="my-4">
   <?php
   if(!$loginAction){
     die("Error Occured :".mysqli_errno());
@@ -39,7 +36,7 @@ $loginAction = mysqli_query($CONN,$query);
         $_SESSION["loginType"] = 1;
         $_SESSION['shippingCenterID'] = $row['SHIPPING_CENTER_ID'];
         header('LOCATION: managerDashboard.php');
-        //echo " <a href='/dashboard.php' class='btn btn-danger' style='width:50%;margin:auto'><h4>Continue</h4></a> ";
+        //echo " <a href='managerDashboard.php' class='btn btn-danger' style='width:50%;margin:auto'><h4>Continue</h4></a> ";
     }
     else{
         echo " <h2>Incorrect Password</h2>";
@@ -50,7 +47,6 @@ $loginAction = mysqli_query($CONN,$query);
     echo "<a href='../index.html' class='btn btn-danger'>Retry</a>";
   }
    ?>
-</div>
   </div>
   <!--BootStrap Scripts-->
   <script src="/assets/js/jquery-3.2.1.slim.min.js"></script>

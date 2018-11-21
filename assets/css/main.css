@@ -8,21 +8,16 @@ body {
 }
 
 .header{
-  margin-bottom:1%;
+  margin-bottom:1rem;
 }
 
 .container{
-  width: 90%;
   margin-bottom: 1rem;
 }
 
-
 .jumbotron{
-  width: 100%;
-}
-
-.card{
-  margin-bottom:1rem;
+   margin:1rem;
+   width:100%;
 }
 
 .row{

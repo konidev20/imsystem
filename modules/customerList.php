@@ -123,7 +123,7 @@ require_once '../includes/managerAuth.php';
                 <div class="col-md-12 text-right">
                   <div class="btn-group">
                     <a class="btn btn-danger" href="deleteCustomer.php?customerID=<?php echo "".$customer['CUSTOMER_ID']; ?>">Delete</a>
-                    <a class="btn btn-secondary" href="updateCustomer.php?=<?php echo $customer['CUSTOMER_ID'] ?>">Update</a>
+                    <a class="btn btn-secondary" href="updateCustomer.php?customerID=<?php echo $customer['CUSTOMER_ID'] ?>">Update</a>
                   </div>
                 </div>
               </div>

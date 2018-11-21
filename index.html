@@ -12,90 +12,88 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="jumbotron" style="margin-top:1rem;">
+      <div class="jumbotron" style="margin:1rem;">
         <div class="container">
           <h1 class="display-4">Inventory Management System </h1>
-          <p class="lead">for a Shipping Center.</p>
           <hr class="my-4">
-          <p>Srigovind Nayak, 1BG16CS104, V Semester</p>
+          <p class="lead">for a Shipping Center.</p>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Welcome, to the Inventory Management System</h4>
-            <p class="card-text">
-              This is a simple inventory management system application designed to keep track of the products stocked in the center.
-              The following is the basic functionality of the application:
-            </p>
-            <ul class="list-group">
-              <li class="list-group-item">Customers can place orders for products.</li>
-              <li class="list-group-item">Customers can track the orders they have placed.</li>
-              <li class="list-group-item">Managers can keep track of the orders that have been placed.</li>
-              <li class="list-group-item">Managers can dispatch orders</li>
-              <li class="list-group-item">Managers can keep track of the products that have been stocked in the shipping center.</li>
-              <li class="list-group-item">Managers can add or remove orders, customers, products etc.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card">
-          <img class="card-img-top" src="/assets/images/image1.png" alt="Card image cap">
-          <div class="card-body">
-            <div class="accordion" id="accordionExample">
-              <!--Customer Login-->
-              <div class="card">
-                <div class="card-header" id="headingOne"  style="background-color:#0000">
-                  <h5 class="mb-0">
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="width:100%;">
-                      <h5>Customer Login</h5>
-                    </button>
-                  </h5>
-                </div>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                  <div class="card-body">
-                    <form  action="/modules/customerLogin.php" method="post">
-                      <div class="form-group">
-                        <label for="custid">Customer ID</label>
-                        <input type="text" class="form-control" name="customerID" placeholder="Enter Customer ID">
-                      </div>
-                      <div class="form-group">
-                        <label for="custpass">Password</label>
-                        <input type="password" class="form-control" name="customerPassword" placeholder="Password">
-                        <small id="passHelp" class="form-text text-muted">Your password is your phone number.</small>
-                      </div>
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
 
-              <!--Manager Login-->
-              <div class="card">
-                <div class="card-header" id="headingThree" style="background-color:#0000">
-                  <h5 class="mb-0">
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="width:100%;">
-                      <h5>Manager Login</h5>
-                    </button>
-                  </h5>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                  <div class="card-body">
-                    <form action="/modules/managerLogin.php" method="post">
-                      <div class="form-group">
-                        <label for="manname">Manager ID</label>
-                        <input type="text" class="form-control" name="managerID" placeholder="Enter Manager ID">
-                      </div>
-                      <div class="form-group">
-                        <label for="manpass">Password</label>
-                        <input type="password" class="form-control" name="managerPassword" placeholder="Password">
-                      </div>
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card-deck">
+          <div class="card">
+            <div class="card-body">
+              <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Welcome,</h5>
+                    <small class="text-muted">Dear Sir/Madam</small>
                   </div>
+                  <p class="mb-1">A simple inventory management system designed to keep track of the inventory and orders at a shipping center.</p>
+                  <small class="text-muted">Login to continue.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Developed by</h5>
+                    <small class="text-muted">Dept. of CSE BNMIT</small>
+                  </div>
+                  <p class="mb-1">Srigovind Nayak</p>
+                  <small class="text-muted">1BG16CS104</small>
+                </a>
+              </div>
+              <br>
+              <p class="card-text">Here is some of the basic functionality offered by the application :</p>
+              <ul class="list-group">
+                <li class="list-group-item">The manager can keep track of all the products and stock in the center.</li>
+                <li class="list-group-item">The manager can also keep track of the orders that have been placed and old orders.</li>
+                <li class="list-group-item">Customers can place orders to stock their own retail shops with products.</li>
+                <li class="list-group-item">Customers can keep track of their orders and order history.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img class="card-img-top" src="/assets/images/image1.png" alt="Card image cap">
+            <div class="card-body">
+              <ul class="nav nav-pills mb-3" id="loginChoices" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="manager-tab" data-toggle="tab" href="#manager" role="tab" aria-controls="home" aria-selected="true">Manager</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="customer-tab" data-toggle="tab" href="#customer" role="tab" aria-controls="customer" aria-selected="false">Customer</a>
+                </li>
+              </ul>
+
+              <div class="tab-content" id="loginChoices">
+                <div class="tab-pane fade show active" id="manager" role="tabpanel" aria-labelledby="manager-tab">
+                  <form action="/modules/managerLogin.php" method="post">
+                    <div class="form-group">
+                      <label for="manname">Manager ID</label>
+                      <input type="text" class="form-control" name="managerID" placeholder="Enter Manager ID">
+                    </div>
+                    <div class="form-group">
+                      <label for="manpass">Password</label>
+                      <input type="password" class="form-control" name="managerPassword" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary text-right">Submit</button>
+                  </form>
+                </div>
+
+                <div class="tab-pane fade" id="customer" role="tabpanel" aria-labelledby="customer-tab">
+                  <form  action="/modules/customerLogin.php" method="post">
+                    <div class="form-group">
+                      <label for="custid">Customer ID</label>
+                      <input type="text" class="form-control" name="customerID" placeholder="Enter Customer ID">
+                    </div>
+                    <div class="form-group">
+                      <label for="custpass">Password</label>
+                      <input type="password" class="form-control" name="customerPassword" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary text-right">Submit</button>
+                  </form>
                 </div>
               </div>
             </div>

@@ -14,7 +14,7 @@ require_once 'db_connect.php';
   <title>Inventory Management System </title>
 </head>
 <body>
-  <div class="header navbar navbar-dark bg-primary">
+  <div class="header navbar navbar-dark bg-dark">
     <span class="navbar-brand">
       Inventory Management System
     </span>

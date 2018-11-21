@@ -17,8 +17,9 @@ require_once '../includes/customerAuth.php';
           <p>Address : <?php echo $customerAddress.",<br>".$customerCity.",<br>".$customerZipCode ?></p>
           <p>Phone : <?php echo $customerPhone ?></p>
           <div class="text-right">
-            <a class="btn btn-secondary" href="logout.php">Logout</a>
-            <a class="btn btn-primary" href="createOrder.php">Create Order</a>
+              <a class="btn btn-primary" href="updateCustomer.php">Update Customer</a>
+              <a class="btn btn-primary" href="createOrder.php">Create Order</a>
+              <a class="btn btn-secondary" href="logout.php">Logout</a>
           </div>
         </div>
       </div>

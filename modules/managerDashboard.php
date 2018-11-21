@@ -34,66 +34,66 @@ require_once '../includes/managerAuth.php';
 </div>
 
 <div class="row">
-  <div class="col-md-3">
-    <div class="card" >
-      <div class="card-header">Orders</div>
-      <div class="card-body">
-        <h5 class="card-title">Pending Orders</h5>
-        <h4 class="card-text"><?php
-        $query = mysqli_query($CONN,"SELECT COUNT(*) AS CNT FROM orders WHERE INVOICE_STATUS = 0;");
-        $row = mysqli_fetch_assoc($query);
-        echo "".$row["CNT"];
-        ?></h4>
-
-        <a class="btn btn-primary" href="orderList.php" style="width:100%;">Show Orders</a>
+  <div class="col-md-12">
+    <div class="card-deck">
+      <div class="card" >
+        <div class="card-header">Orders</div>
+        <div class="card-body">
+          <h5 class="card-title">Pending Orders</h5>
+          <h4 class="card-text"><?php
+          $query = mysqli_query($CONN,"SELECT COUNT(*) AS CNT FROM orders WHERE INVOICE_STATUS = 0;");
+          $row = mysqli_fetch_assoc($query);
+          echo "".$row["CNT"];
+          ?></h4>
+        </div>
+        <div class="card-footer bg-white">
+            <a class="btn btn-primary" href="orderList.php" style="width:100%;">Show Orders</a>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="col-md-3">
-    <div class="card" >
-      <div class="card-header">Customers</div>
-      <div class="card-body">
-        <h5 class="card-title">No. of Customers</h5>
-        <h4 class="card-text"><?php
-        $query = mysqli_query($CONN,"SELECT COUNT(*) AS CNT FROM customer");
-        $row = mysqli_fetch_assoc($query);
-        echo "".$row["CNT"];
-        ?></h4>
-
-        <a class="btn btn-primary" href="customerList.php"  style="width:100%;">Show Customers</a>
+      <div class="card" >
+        <div class="card-header">Customers</div>
+        <div class="card-body">
+          <h5 class="card-title">No. of Customers</h5>
+          <h4 class="card-text"><?php
+          $query = mysqli_query($CONN,"SELECT COUNT(*) AS CNT FROM customer");
+          $row = mysqli_fetch_assoc($query);
+          echo "".$row["CNT"];
+          ?></h4>
+        </div>
+        <div class="card-footer bg-white">
+            <a class="btn btn-primary" href="customerList.php"  style="width:100%;">Show Customers</a>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="col-md-3">
-    <div class="card" >
-      <div class="card-header">Stock</div>
-      <div class="card-body">
-        <h5 class="card-title">Total Stock Available</h5>
-        <h4 class="card-text"><?php
-        $query = mysqli_query($CONN,"SELECT SUM(NO_OF_UNITS) AS SM FROM stock");
-        $row = mysqli_fetch_assoc($query);
-        echo "".$row["SM"];
-        ?></h4>
-
-        <a class="btn btn-primary" href="stockList.php"  style="width:100%;">Show Stock</a>
+      <div class="card" >
+        <div class="card-header">Stock</div>
+        <div class="card-body">
+          <h5 class="card-title">Total Stock Available</h5>
+          <h4 class="card-text"><?php
+          $query = mysqli_query($CONN,"SELECT SUM(NO_OF_UNITS) AS SM FROM stock");
+          $row = mysqli_fetch_assoc($query);
+          echo "".$row["SM"];
+          ?></h4>
+        </div>
+        <div class="card-footer bg-white">
+          <a class="btn btn-primary" href="stockList.php"  style="width:100%;">Show Stock</a>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="col-md-3">
-    <div class="card" >
-      <div class="card-header">Products</div>
-      <div class="card-body">
-        <h5 class="card-title">Products Available</h5>
-        <h4 class="card-text"><?php
-        $query = mysqli_query($CONN,"SELECT COUNT(*) AS CNT FROM product");
-        $row = mysqli_fetch_assoc($query);
-        echo "".$row["CNT"];
-        ?></h4>
-
-        <a class="btn btn-primary" href="productList.php"  style="width:100%;">Show Products</a>
+      <div class="card" >
+        <div class="card-header">Products</div>
+        <div class="card-body">
+          <h5 class="card-title">Products Available</h5>
+          <h4 class="card-text"><?php
+          $query = mysqli_query($CONN,"SELECT COUNT(*) AS CNT FROM product");
+          $row = mysqli_fetch_assoc($query);
+          echo "".$row["CNT"];
+          ?></h4>
+        </div>
+        <div class="card-footer bg-white">
+            <a class="btn btn-primary" href="productList.php"  style="width:100%;">Show Products</a>
+        </div>
       </div>
     </div>
   </div>
